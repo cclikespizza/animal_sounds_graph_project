@@ -54,7 +54,7 @@ GROUP BY s.verb, m.ex"""
 def graph_making():
     if len(request.args) <= 0:
         abort(404)
-        return render_template('movie.html')
+        return render_template('animals.html')
     if 'q' in request.args:
         q = request.args["q"]
         a = request.args["a"]
@@ -97,7 +97,7 @@ def simple_search():
         db = SQLClient(u'animals_db.dtb')
         arr = []
         for i in db.query(sql_query):
-            arr.append({u'movie':{u'title':i[2], u'released': i[1], u'language': i[0], u'verb': i[3], u'trans': i[4], u'tag': i[5], u'animal':i[1], u'animal2': i[2], u'ex': i[6]}})
+            arr.append({u'data':{u'title':i[2], u'released': i[1], u'language': i[0], u'verb': i[3], u'trans': i[4], u'tag': i[5], u'animal':i[1], u'animal2': i[2], u'ex': i[6]}})
         return json.dumps(arr)
     abort(404)
 
