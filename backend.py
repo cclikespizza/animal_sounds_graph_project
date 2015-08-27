@@ -2,16 +2,27 @@
 __author__ = 'elmira'
 
 from utilities import SQLClient
-from flask import Flask, jsonify, abort, make_response, request, render_template
+from flask import Flask, jsonify, abort, make_response, request, render_template, url_for
 import json
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./static/', static_path='/static/')
 
 
 @app.route('/')
 def index():
     return render_template('animals.html')
 
+@app.route('/animals')
+def an_sel():
+    return render_template('animals_sel.html')
+
+@app.route('/languages')
+def l_sel():
+    return render_template('lang_sel.html')
+
+@app.route('/tags')
+def t_sel():
+    return render_template('tags_sel.html')
 
 def make_one_query(table, q):
     query = "SELECT id FROM " + table
@@ -60,7 +71,7 @@ def graph_making():
         a = request.args["a"]
         l = request.args["l"]
         t = request.args["t"]
-        print q, a, l, t
+        # print q, a, l, t
         sql_query = make_sql_for_simple_search(a, l, t)
         db = SQLClient(u'animals_db.dtb')
         graph = {"nodes": [], "links": []}
@@ -74,7 +85,7 @@ def graph_making():
             if i[3] not in nodes:
                 nodes.append(i[3])
                 graph["nodes"].append({u"name":i[3], u'label': u"Verb", u"id":nodes.index(i[3])})
-            if i[5] not in nodes:
+            if i[5] not in nodes and i[5] != '':
                 nodes.append(i[5])
                 graph["nodes"].append({u"name":i[5], u'label': u"Tag", u"id":nodes.index(i[5])})
             graph["links"].append({u"source":nodes.index(i[1]), u'target': nodes.index(i[3]), u"type": "MAKES_SOUND"})

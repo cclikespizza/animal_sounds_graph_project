@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>POS TAGS</title>
+    <link rel="stylesheet" href="http://neo4j-contrib.github.io/developer-resources/language-guides/assets/css/main.css">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap2-toggle.min.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap2-toggle.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" type="text/javascript"></script>
+    <script language="JavaScript" src="{{ url_for('static', filename='gramsel.js') }}"></script>
+	<script language="JavaScript" src="{{ url_for('static', filename='urlprocessor.js') }}"></script>
+
+
+</head>
+<body onLoad="InitWindow()">
+<div class="container">
+<div class="row">
+  <div class="col-sm-12">
+  <form name="gramForm" id="gramForm" action="">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 title="Invert" class="panel-title gr_inv  activeA grammar" onClick="inverse('pos')">Parts of Speech</h3>
+        </div>
+        <div class="panel-body">
+                <div class="gr_group">
+                    <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-3">
+<input type="checkbox" name="pos" value="слепень" id="animal1">&nbsp;<label for="animal1">слепень</label><br/>
+<input type="checkbox" name="pos" value="ворона" id="animal2">&nbsp;<label for="animal2">ворона</label><br/>
+<input type="checkbox" name="pos" value="лось" id="animal3">&nbsp;<label for="animal3">лось</label><br/>
+<input type="checkbox" name="pos" value="индюк" id="animal4">&nbsp;<label for="animal4">индюк</label><br/>
+<input type="checkbox" name="pos" value="дикие звери" id="animal5">&nbsp;<label for="animal5">дикие звери</label><br/>
+<input type="checkbox" name="pos" value="овца" id="animal6">&nbsp;<label for="animal6">овца</label><br/>
+<input type="checkbox" name="pos" value="сверчок" id="animal7">&nbsp;<label for="animal7">сверчок</label><br/>
+<input type="checkbox" name="pos" value="ворон" id="animal8">&nbsp;<label for="animal8">ворон</label><br/>
+<input type="checkbox" name="pos" value="шакал" id="animal9">&nbsp;<label for="animal9">шакал</label><br/>
+<input type="checkbox" name="pos" value="ягнёнок" id="animal10">&nbsp;<label for="animal10">ягнёнок</label><br/>
+<input type="checkbox" name="pos" value="осёл" id="animal11">&nbsp;<label for="animal11">осёл</label><br/>
+<input type="checkbox" name="pos" value="тетерев" id="animal12">&nbsp;<label for="animal12">тетерев</label><br/>
+<input type="checkbox" name="pos" value="щенок" id="animal13">&nbsp;<label for="animal13">щенок</label><br/>
+<input type="checkbox" name="pos" value="рысь" id="animal14">&nbsp;<label for="animal14">рысь</label><br/>
+<input type="checkbox" name="pos" value="крокодил" id="animal15">&nbsp;<label for="animal15">крокодил</label><br/>
+<input type="checkbox" name="pos" value="козёл" id="animal16">&nbsp;<label for="animal16">козёл</label><br/>
+<input type="checkbox" name="pos" value="буйвол" id="animal17">&nbsp;<label for="animal17">буйвол</label><br/>
+<input type="checkbox" name="pos" value="ягуар" id="animal18">&nbsp;<label for="animal18">ягуар</label><br/>
+<input type="checkbox" name="pos" value="глухарь" id="animal19">&nbsp;<label for="animal19">глухарь</label><br/>
+<input type="checkbox" name="pos" value="сокол" id="animal20">&nbsp;<label for="animal20">сокол</label><br/>
+<input type="checkbox" name="pos" value="сова" id="animal21">&nbsp;<label for="animal21">сова</label><br/>
+<input type="checkbox" name="pos" value="ястреб" id="animal22">&nbsp;<label for="animal22">ястреб</label><br/>
+<input type="checkbox" name="pos" value="вол" id="animal23">&nbsp;<label for="animal23">вол</label><br/>
+<input type="checkbox" name="pos" value="кошка" id="animal24">&nbsp;<label for="animal24">кошка</label><br/>
+<input type="checkbox" name="pos" value="маленькая птица" id="animal25">&nbsp;<label for="animal25">маленькая птица</label><br/>
+<input type="checkbox" name="pos" value="леопард" id="animal26">&nbsp;<label for="animal26">леопард</label><br/>
+<input type="checkbox" name="pos" value="гусёнок" id="animal27">&nbsp;<label for="animal27">гусёнок</label><br/>
+<input type="checkbox" name="pos" value="голубь" id="animal28">&nbsp;<label for="animal28">голубь</label><br/>
+<input type="checkbox" name="pos" value="сова" id="animal29">&nbsp;<label for="animal29">сова</label><br/>
+<input type="checkbox" name="pos" value="жук" id="animal30">&nbsp;<label for="animal30">жук</label><br/>
+<input type="checkbox" name="pos" value="лебедь" id="animal31">&nbsp;<label for="animal31">лебедь</label><br/>
+<input type="checkbox" name="pos" value="гагара" id="animal32">&nbsp;<label for="animal32">гагара</label><br/>
+<input type="checkbox" name="pos" value="жаба" id="animal33">&nbsp;<label for="animal33">жаба</label><br/>
+<input type="checkbox" name="pos" value="хищная птица" id="animal34">&nbsp;<label for="animal34">хищная птица</label><br/>
+<input type="checkbox" name="pos" value="самцы животных" id="animal35">&nbsp;<label for="animal35">самцы животных</label><br/>
+<input type="checkbox" name="pos" value="щенок" id="animal36">&nbsp;<label for="animal36">щенок</label><br/>
+<input type="checkbox" name="pos" value="кот" id="animal37">&nbsp;<label for="animal37">кот</label><br/>
+<input type="checkbox" name="pos" value="боров" id="animal38">&nbsp;<label for="animal38">боров</label><br/>
+<input type="checkbox" name="pos" value="комар" id="animal39">&nbsp;<label for="animal39">комар</label><br/>
+<input type="checkbox" name="pos" value="цыплёнок" id="animal40">&nbsp;<label for="animal40">цыплёнок</label><br/>
+<input type="checkbox" name="pos" value="кабан" id="animal41">&nbsp;<label for="animal41">кабан</label><br/>
+<input type="checkbox" name="pos" value="морская свинка" id="animal42">&nbsp;<label for="animal42">морская свинка</label><br/>
+<input type="checkbox" name="pos" value="енот" id="animal43">&nbsp;<label for="animal43">енот</label><br/>
+<input type="checkbox" name="pos" value="заяц" id="animal44">&nbsp;<label for="animal44">заяц</label><br/>
+<input type="checkbox" name="pos" value="пантера" id="animal45">&nbsp;<label for="animal45">пантера</label><br/>
+<input type="checkbox" name="pos" value="лягушка" id="animal46">&nbsp;<label for="animal46">лягушка</label><br/>
+<input type="checkbox" name="pos" value="поросёнок" id="animal47">&nbsp;<label for="animal47">поросёнок</label><br/>
+<input type="checkbox" name="pos" value="телёнок" id="animal48">&nbsp;<label for="animal48">телёнок</label><br/>
+<input type="checkbox" name="pos" value="свинья" id="animal49">&nbsp;<label for="animal49">свинья</label><br/>
+<input type="checkbox" name="pos" value="утка" id="animal50">&nbsp;<label for="animal50">утка</label><br/>
+<input type="checkbox" name="pos" value="большая птица" id="animal51">&nbsp;<label for="animal51">большая птица</label><br/>
+<input type="checkbox" name="pos" value="вяхирь" id="animal52">&nbsp;<label for="animal52">вяхирь</label><br/>
+<input type="checkbox" name="pos" value="котёнок" id="animal53">&nbsp;<label for="animal53">котёнок</label><br/>
+<input type="checkbox" name="pos" value="лошадь" id="animal54">&nbsp;<label for="animal54">лошадь</label><br/>
+<input type="checkbox" name="pos" value="крупное животное" id="animal55">&nbsp;<label for="animal55">крупное животное</label><br/>
+<input type="checkbox" name="pos" value="сокол" id="animal56">&nbsp;<label for="animal56">сокол</label><br/>
+<input type="checkbox" name="pos" value="сорока" id="animal57">&nbsp;<label for="animal57">сорока</label><br/>
+
+                        </div>
+                        <div class="col-sm-3">
+<input type="checkbox" name="pos" value="воробей" id="animal58">&nbsp;<label for="animal58">воробей</label><br/>
+<input type="checkbox" name="pos" value="филин" id="animal59">&nbsp;<label for="animal59">филин</label><br/>
+<input type="checkbox" name="pos" value="малиновка" id="animal60">&nbsp;<label for="animal60">малиновка</label><br/>
+<input type="checkbox" name="pos" value="лесная сова" id="animal61">&nbsp;<label for="animal61">лесная сова</label><br/>
+<input type="checkbox" name="pos" value="сойка" id="animal62">&nbsp;<label for="animal62">сойка</label><br/>
+<input type="checkbox" name="pos" value="какаду" id="animal63">&nbsp;<label for="animal63">какаду</label><br/>
+<input type="checkbox" name="pos" value="чибис" id="animal64">&nbsp;<label for="animal64">чибис</label><br/>
+<input type="checkbox" name="pos" value="сипуха" id="animal65">&nbsp;<label for="animal65">сипуха</label><br/>
+<input type="checkbox" name="pos" value="маленькое животное" id="animal66">&nbsp;<label for="animal66">маленькое животное</label><br/>
+<input type="checkbox" name="pos" value="цесарка" id="animal67">&nbsp;<label for="animal67">цесарка</label><br/>
+<input type="checkbox" name="pos" value="белка" id="animal68">&nbsp;<label for="animal68">белка</label><br/>
+<input type="checkbox" name="pos" value="обезьяна" id="animal69">&nbsp;<label for="animal69">обезьяна</label><br/>
+<input type="checkbox" name="pos" value="баран" id="animal70">&nbsp;<label for="animal70">баран</label><br/>
+<input type="checkbox" name="pos" value="цапля" id="animal71">&nbsp;<label for="animal71">цапля</label><br/>
+<input type="checkbox" name="pos" value="жаворонок" id="animal72">&nbsp;<label for="animal72">жаворонок</label><br/>
+<input type="checkbox" name="pos" value="тигр" id="animal73">&nbsp;<label for="animal73">тигр</label><br/>
+<input type="checkbox" name="pos" value="хомяк" id="animal74">&nbsp;<label for="animal74">хомяк</label><br/>
+<input type="checkbox" name="pos" value="гепард" id="animal75">&nbsp;<label for="animal75">гепард</label><br/>
+<input type="checkbox" name="pos" value="косуля" id="animal76">&nbsp;<label for="animal76">косуля</label><br/>
+<input type="checkbox" name="pos" value="волнистый попугайчик" id="animal77">&nbsp;<label for="animal77">волнистый попугайчик</label><br/>
+<input type="checkbox" name="pos" value="медведь" id="animal78">&nbsp;<label for="animal78">медведь</label><br/>
+<input type="checkbox" name="pos" value="курица" id="animal79">&nbsp;<label for="animal79">курица</label><br/>
+<input type="checkbox" name="pos" value="песец" id="animal80">&nbsp;<label for="animal80">песец</label><br/>
+<input type="checkbox" name="pos" value="слон" id="animal81">&nbsp;<label for="animal81">слон</label><br/>
+<input type="checkbox" name="pos" value="соловей" id="animal82">&nbsp;<label for="animal82">соловей</label><br/>
+<input type="checkbox" name="pos" value="насекомое" id="animal83">&nbsp;<label for="animal83">насекомое</label><br/>
+<input type="checkbox" name="pos" value="оса" id="animal84">&nbsp;<label for="animal84">оса</label><br/>
+<input type="checkbox" name="pos" value="дикий гусь" id="animal85">&nbsp;<label for="animal85">дикий гусь</label><br/>
+<input type="checkbox" name="pos" value="утёнок" id="animal86">&nbsp;<label for="animal86">утёнок</label><br/>
+<input type="checkbox" name="pos" value="выдра" id="animal87">&nbsp;<label for="animal87">выдра</label><br/>
+<input type="checkbox" name="pos" value="наседка" id="animal88">&nbsp;<label for="animal88">наседка</label><br/>
+<input type="checkbox" name="pos" value="олень" id="animal89">&nbsp;<label for="animal89">олень</label><br/>
+<input type="checkbox" name="pos" value="стрекоза" id="animal90">&nbsp;<label for="animal90">стрекоза</label><br/>
+<input type="checkbox" name="pos" value="гриф" id="animal91">&nbsp;<label for="animal91">гриф</label><br/>
+<input type="checkbox" name="pos" value="кролик" id="animal92">&nbsp;<label for="animal92">кролик</label><br/>
+<input type="checkbox" name="pos" value="кобыла" id="animal93">&nbsp;<label for="animal93">кобыла</label><br/>
+<input type="checkbox" name="pos" value="пума" id="animal94">&nbsp;<label for="animal94">пума</label><br/>
+<input type="checkbox" name="pos" value="тюлень" id="animal95">&nbsp;<label for="animal95">тюлень</label><br/>
+<input type="checkbox" name="pos" value="кошачьи" id="animal96">&nbsp;<label for="animal96">кошачьи</label><br/>
+<input type="checkbox" name="pos" value="дрозд" id="animal97">&nbsp;<label for="animal97">дрозд</label><br/>
+<input type="checkbox" name="pos" value="аист" id="animal98">&nbsp;<label for="animal98">аист</label><br/>
+<input type="checkbox" name="pos" value="конь" id="animal99">&nbsp;<label for="animal99">конь</label><br/>
+<input type="checkbox" name="pos" value="змея" id="animal100">&nbsp;<label for="animal100">змея</label><br/>
+<input type="checkbox" name="pos" value="грач" id="animal101">&nbsp;<label for="animal101">грач</label><br/>
+<input type="checkbox" name="pos" value="крыса" id="animal102">&nbsp;<label for="animal102">крыса</label><br/>
+<input type="checkbox" name="pos" value="корова" id="animal103">&nbsp;<label for="animal103">корова</label><br/>
+<input type="checkbox" name="pos" value="цикада" id="animal104">&nbsp;<label for="animal104">цикада</label><br/>
+<input type="checkbox" name="pos" value="лиса" id="animal105">&nbsp;<label for="animal105">лиса</label><br/>
+<input type="checkbox" name="pos" value="синица" id="animal106">&nbsp;<label for="animal106">синица</label><br/>
+<input type="checkbox" name="pos" value="геккон" id="animal107">&nbsp;<label for="animal107">геккон</label><br/>
+<input type="checkbox" name="pos" value="славка" id="animal108">&nbsp;<label for="animal108">славка</label><br/>
+<input type="checkbox" name="pos" value="пчела" id="animal109">&nbsp;<label for="animal109">пчела</label><br/>
+<input type="checkbox" name="pos" value="волчьи" id="animal110">&nbsp;<label for="animal110">волчьи</label><br/>
+<input type="checkbox" name="pos" value="мелкий овод" id="animal111">&nbsp;<label for="animal111">мелкий овод</label><br/>
+<input type="checkbox" name="pos" value="мышь" id="animal112">&nbsp;<label for="animal112">мышь</label><br/>
+<input type="checkbox" name="pos" value="горлица" id="animal113">&nbsp;<label for="animal113">горлица</label><br/>
+<input type="checkbox" name="pos" value="шершень" id="animal114">&nbsp;<label for="animal114">шершень</label><br/>
+
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="checkbox" name="pos" value="майский жук" id="animal115">&nbsp;<label for="animal115">майский жук</label><br/>
+<input type="checkbox" name="pos" value="чайка" id="animal116">&nbsp;<label for="animal116">чайка</label><br/>
+<input type="checkbox" name="pos" value="витютень" id="animal117">&nbsp;<label for="animal117">витютень</label><br/>
+<input type="checkbox" name="pos" value="кукушка" id="animal118">&nbsp;<label for="animal118">кукушка</label><br/>
+<input type="checkbox" name="pos" value="павлин" id="animal119">&nbsp;<label for="animal119">павлин</label><br/>
+<input type="checkbox" name="pos" value="оленёнок" id="animal120">&nbsp;<label for="animal120">оленёнок</label><br/>
+<input type="checkbox" name="pos" value="бык" id="animal121">&nbsp;<label for="animal121">бык</label><br/>
+<input type="checkbox" name="pos" value="куропатка" id="animal122">&nbsp;<label for="animal122">куропатка</label><br/>
+<input type="checkbox" name="pos" value="скворец" id="animal123">&nbsp;<label for="animal123">скворец</label><br/>
+<input type="checkbox" name="pos" value="ворон" id="animal124">&nbsp;<label for="animal124">ворон</label><br/>
+<input type="checkbox" name="pos" value="перепел" id="animal125">&nbsp;<label for="animal125">перепел</label><br/>
+<input type="checkbox" name="pos" value="лев" id="animal126">&nbsp;<label for="animal126">лев</label><br/>
+<input type="checkbox" name="pos" value="попугай" id="animal127">&nbsp;<label for="animal127">попугай</label><br/>
+<input type="checkbox" name="pos" value="канарейка" id="animal128">&nbsp;<label for="animal128">канарейка</label><br/>
+<input type="checkbox" name="pos" value="ёж" id="animal129">&nbsp;<label for="animal129">ёж</label><br/>
+<input type="checkbox" name="pos" value="верблюд" id="animal130">&nbsp;<label for="animal130">верблюд</label><br/>
+<input type="checkbox" name="pos" value="кузнечик" id="animal131">&nbsp;<label for="animal131">кузнечик</label><br/>
+<input type="checkbox" name="pos" value="муха" id="animal132">&nbsp;<label for="animal132">муха</label><br/>
+<input type="checkbox" name="pos" value="крот" id="animal133">&nbsp;<label for="animal133">крот</label><br/>
+<input type="checkbox" name="pos" value="гиппопотам" id="animal134">&nbsp;<label for="animal134">гиппопотам</label><br/>
+<input type="checkbox" name="pos" value="саранча" id="animal135">&nbsp;<label for="animal135">саранча</label><br/>
+<input type="checkbox" name="pos" value="морской лев" id="animal136">&nbsp;<label for="animal136">морской лев</label><br/>
+<input type="checkbox" name="pos" value="гусь" id="animal137">&nbsp;<label for="animal137">гусь</label><br/>
+<input type="checkbox" name="pos" value="петух" id="animal138">&nbsp;<label for="animal138">петух</label><br/>
+<input type="checkbox" name="pos" value="певчая птица" id="animal139">&nbsp;<label for="animal139">певчая птица</label><br/>
+<input type="checkbox" name="pos" value="неясыть" id="animal140">&nbsp;<label for="animal140">неясыть</label><br/>
+<input type="checkbox" name="pos" value="птица" id="animal141">&nbsp;<label for="animal141">птица</label><br/>
+<input type="checkbox" name="pos" value="гиена" id="animal142">&nbsp;<label for="animal142">гиена</label><br/>
+<input type="checkbox" name="pos" value="животное" id="animal143">&nbsp;<label for="animal143">животное</label><br/>
+<input type="checkbox" name="pos" value="волк" id="animal144">&nbsp;<label for="animal144">волк</label><br/>
+<input type="checkbox" name="pos" value="журавль" id="animal145">&nbsp;<label for="animal145">журавль</label><br/>
+<input type="checkbox" name="pos" value="зебра" id="animal146">&nbsp;<label for="animal146">зебра</label><br/>
+<input type="checkbox" name="pos" value="курица" id="animal147">&nbsp;<label for="animal147">курица</label><br/>
+<input type="checkbox" name="pos" value="тигрица" id="animal148">&nbsp;<label for="animal148">тигрица</label><br/>
+<input type="checkbox" name="pos" value="ласка" id="animal149">&nbsp;<label for="animal149">ласка</label><br/>
+<input type="checkbox" name="pos" value="орёл" id="animal150">&nbsp;<label for="animal150">орёл</label><br/>
+<input type="checkbox" name="pos" value="хищники" id="animal151">&nbsp;<label for="animal151">хищники</label><br/>
+<input type="checkbox" name="pos" value="хорёк" id="animal152">&nbsp;<label for="animal152">хорёк</label><br/>
+<input type="checkbox" name="pos" value="лама" id="animal153">&nbsp;<label for="animal153">лама</label><br/>
+<input type="checkbox" name="pos" value="перелетная птица" id="animal154">&nbsp;<label for="animal154">перелетная птица</label><br/>
+<input type="checkbox" name="pos" value="птенец" id="animal155">&nbsp;<label for="animal155">птенец</label><br/>
+<input type="checkbox" name="pos" value="зяблик" id="animal156">&nbsp;<label for="animal156">зяблик</label><br/>
+<input type="checkbox" name="pos" value="фазан" id="animal157">&nbsp;<label for="animal157">фазан</label><br/>
+<input type="checkbox" name="pos" value="трясогузка" id="animal158">&nbsp;<label for="animal158">трясогузка</label><br/>
+<input type="checkbox" name="pos" value="альбатрос" id="animal159">&nbsp;<label for="animal159">альбатрос</label><br/>
+<input type="checkbox" name="pos" value="шмель" id="animal160">&nbsp;<label for="animal160">шмель</label><br/>
+<input type="checkbox" name="pos" value="коршун" id="animal161">&nbsp;<label for="animal161">коршун</label><br/>
+<input type="checkbox" name="pos" value="галка" id="animal162">&nbsp;<label for="animal162">галка</label><br/>
+<input type="checkbox" name="pos" value="носорог" id="animal163">&nbsp;<label for="animal163">носорог</label><br/>
+<input type="checkbox" name="pos" value="коза" id="animal164">&nbsp;<label for="animal164">коза</label><br/>
+<input type="checkbox" name="pos" value="собака" id="animal165">&nbsp;<label for="animal165">собака</label><br/>
+<input type="checkbox" name="pos" value="ласточка" id="animal166">&nbsp;<label for="animal166">ласточка</label><br/>
+<input type="checkbox" name="pos" value="индюшка" id="animal167">&nbsp;<label for="animal167">индюшка</label><br/>
+<input type="checkbox" name="pos" value="гусак" id="animal168">&nbsp;<label for="animal168">гусак</label><br/>
+<input type="checkbox" name="pos" value="конёк (маленькая птичка)" id="animal169">&nbsp;<label for="animal169">конёк (маленькая птичка)</label><br/>
+<input type="checkbox" name="pos" value="лань" id="animal170">&nbsp;<label for="animal170">лань</label><br/>
+<input type="checkbox" name="pos" value="летучая мышь" id="animal171">&nbsp;<label for="animal171">летучая мышь</label><br/>
+<input type="checkbox" name="pos" value="пингвин" id="animal172">&nbsp;<label for="animal172">пингвин</label><br/>
+<input type="checkbox" name="pos" value="котенок" id="animal173">&nbsp;<label for="animal173">котенок</label><br/>
+<input type="checkbox" name="pos" value="рябчик" id="animal174">&nbsp;<label for="animal174">рябчик</label><br/>
+                        </div>
+                    </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+          <div class="panel-footer">
+              <input type="button" class="button" onClick="collect();return false;" value="OK">
+		<input type="button" class="button" onClick="document.all.gramForm.reset();return false;" value="CLEAR">
+		<input type="button" class="button" onClick="window.close();return false;" value="CANCEL">
+          </div>
+
+      </div>
+  </form>
+  </div>
+</div>
+    </div>
+</body>
+</html>

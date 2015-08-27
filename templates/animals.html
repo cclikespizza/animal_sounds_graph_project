@@ -3,7 +3,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="http://neo4j-contrib.github.io/developer-resources/language-guides/assets/css/main.css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap2-toggle.min.css" rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap2-toggle.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" type="text/javascript"></script>
+    <script language="JavaScript" src="{{ url_for('static', filename='gramsel.js') }}"></script>
+	<script language="JavaScript" src="{{ url_for('static', filename='urlprocessor.js') }}"></script>
+    <script language="JavaScript" src="{{ url_for('static', filename='mainform.js') }}"></script>
+
     <title>Animal Sounds Database</title>
 </head>
 
@@ -18,13 +25,13 @@
                     <li>
                         <form role="search" class="navbar-form form-inline" id="search">
                             <div class="form-group">
-                                <input type="text" value="кошка, собака" placeholder="Search for Animal" class="form-control" name="animal">
+                                <a onclick="getAnimals()">#</a><input type="text" value="кошка, собака" placeholder="Search for Animal" class="form-control" name="animal" id="animal_search">
                             </div>
                             <div class="form-group">
-                                 <input type="text" value="молдавский, греческий" placeholder="Search for Language" class="form-control" name="language">
+                                 <a onclick="getLang()">#</a><input type="text" value="молдавский, греческий" placeholder="Search for Language" class="form-control" name="language" id="lang_search">
                             </div>
                             <div class="form-group">
-                                 <input type="text" value="человек" placeholder="Search for Tag" class="form-control" name="tag">
+                                 <a onclick="getTag()">#</a><input type="text" value="человек" placeholder="Search for Tag" class="form-control" name="tag" id="tag_search">
                             </div>
                             <div class="form-group">
                                  <button class="btn btn-default" type="submit">Search</button>
@@ -100,14 +107,8 @@
     #fixed {position: fixed; right:0}
 </style>
 
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap2-toggle.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
-<script src="http://d3js.org/d3.v3.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
-    $(document).ready(function(){
-    $('title').tooltip();
-});
     $(function () {
         function showInfo(title) {
             $.get("/details/" + encodeURIComponent(title),
@@ -182,7 +183,7 @@ function dragstart(d) {
 
 d3.json("/graph?q=" + encodeURIComponent(q)+"&a="+ encodeURIComponent(a)+"&l="+ encodeURIComponent(l)+"&t="+ encodeURIComponent(t), function(error, graph) {
 		if (error) return;
-		
+
         force.nodes(graph.nodes).links(graph.links).start();
 
         var link = svg.selectAll(".link")
@@ -197,15 +198,13 @@ d3.json("/graph?q=" + encodeURIComponent(q)+"&a="+ encodeURIComponent(a)+"&l="+ 
         var node = gnodes.append("circle")
                 .attr("class", function (d) { return "node "+d.label })
                 .attr("r", 5)
-
+                .attr('title', function (d) { return d.name; })
                 .on("dblclick", dblclick)
                 .call(force.drag);
 
         // html title attribute
         node.append("title")
-                .text(function (d) { return d.name; })
-                .attr("data-toggle", 'tooltip')
-                .attr("title", function (d) { return d.name; });
+                .text(function (d) { return d.name; }).attr('title', function (d) { return d.name; });
         var labels = gnodes.append("text")
             .text(function(d) {
             return '';//d.name;
@@ -227,6 +226,7 @@ d3.json("/graph?q=" + encodeURIComponent(q)+"&a="+ encodeURIComponent(a)+"&l="+ 
     });
         });
  });}
+
 
 
 </script>
