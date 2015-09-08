@@ -2,7 +2,17 @@
 __author__ = 'elmira'
 
 import sqlite3 as sqlite
+import codecs
 
+# f = codecs.open('/home/elmira/zvukimu/zvukimu/static/colors.txt', 'r', 'utf-8') # todo change name!
+f = codecs.open('./static/colors.txt', 'r', 'utf-8') # todo change name!
+colors = [i.rstrip() for i in f.readlines()]
+f.close()
+
+# f = codecs.open('/home/elmira/zvukimu/zvukimu/static/lang_color.txt', 'r', 'utf-8') # todo change name!
+f = codecs.open('./static/lang_color.txt', 'r', 'utf-8') # todo change name!
+lang_colors = {i.rstrip().split('\t')[0]: i.rstrip().split('\t')[1] for i in f.readlines()}
+f.close()
 
 class Concatenate:
     def __init__(self):

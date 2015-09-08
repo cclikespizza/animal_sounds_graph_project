@@ -25,7 +25,7 @@
 </head>
 
 <body>
-<div id="graph" data-step="7" data-intro="После нажатия чекбокса вы увидите графы, которые визуализируют полученные данные. </br></br> Узлы графа можно перетаскивать мышкой в удобные области экрана. Узлы прикрепляются к тому месту экрана, куда вы их перетянули. Чтобы освободить узел, дважды кликните на него. </br></br> Красные узлы графа символизируют животных, черные - тэги. Остальные узлы графа - глаголы, они окрашены в разные цвета в зависимости от языка.">
+<div id="graph" data-step="7" data-intro="FR После нажатия чекбокса вы увидите графы, которые визуализируют полученные данные. </br></br> Узлы графа можно перетаскивать мышкой в удобные области экрана. Узлы прикрепляются к тому месту экрана, куда вы их перетянули. Чтобы освободить узел, дважды кликните на него. </br></br> Красные узлы графа символизируют животных, черные - тэги. Остальные узлы графа - глаголы, они окрашены в разные цвета в зависимости от языка.">
 </div>
 <div role="navigation" class="navbar navbar-default navbar-static-top">
     <div class="container-fluid">
@@ -35,14 +35,14 @@
                     <li>
                         <form role="search" class="navbar-form form-inline" id="search">
 
-                            <div class="form-group" data-step="1" data-intro="Для поиска животных введите их названия через запятую в этом поле. Например: волк, медведь."><input type="text" value="кошка, собака" placeholder="Поиск животного" class="form-control" name="animal" id="animal_search">
+                            <div class="form-group" data-step="1" data-intro="Для поиска животных введите их названия через запятую в этом поле. Например: волк, медведь."><input type="text" value="кошка, собака" placeholder="Nom de l’animal" class="form-control" name="animal" id="animal_search">
                             </div>
-                            <div class="form-group" data-step="2" data-intro="Для поиска определенных языков введите их названия через запятую в этом поле. Например: индонезийский, китайский."><input type="text" value="молдавский, греческий" placeholder="Язык" class="form-control" name="language" id="lang_search">
+                            <div class="form-group" data-step="2" data-intro="Для поиска определенных языков введите их названия через запятую в этом поле. Например: индонезийский, китайский."><input type="text" value="молдавский, греческий" placeholder="Langue" class="form-control" name="language" id="lang_search">
                             </div>
-                            <div class="form-group" data-step="3" data-intro="Для поиска определенных тэгов введите их названия через запятую в этом поле. Например: человек, плач."><input type="text" value="человек" placeholder="Поиск тэгов" class="form-control" name="tag" id="tag_search">
+                            <div class="form-group" data-step="3" data-intro="Для поиска определенных тэгов введите их названия через запятую в этом поле. Например: человек, плач."><input type="text" value="человек" placeholder="Tag" class="form-control" name="tag" id="tag_search">
                             </div>
                             <div class="form-group">
-                                 <button class="btn btn-default" type="submit" data-step="4" data-intro="Чтобы начать поиск, нажмите эту кнопку. Также поиск начнется по нажатию Enter в любом поле поиска.">Искать</button>
+                                 <button class="btn btn-default" type="submit" data-step="4" data-intro="Чтобы начать поиск, нажмите эту кнопку. Также поиск начнется по нажатию Enter в любом поле поиска.">Recherche</button>
                             </div>
                             <span class="divider-vertical"></span>
                             <div class="form-group" data-step="5" data-intro="Чтобы увидеть графы, щелкните этот чекбокс. Чтобы увидеть таблицы, щелкните чекбокс повторно.">
@@ -50,8 +50,8 @@
                             </div>
                             <span class="divider-vertical"></span>
                             <!--<a href="/advanced" class="btn btn-info btn-sm" role="button">Advanced Search</a> -->
-                            <a href="#myModal" tabindex="-1" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" aria-labelledby="Advanced Search">Продвинутый поиск</a>
-                            <a tabindex="-1" type="button" class="btn btn-info btn-sm" href="javascript:void(0);" onclick="startTour();" aria-labelledby="Help">Как искать</a>
+                            <a href="#myModal" tabindex="-1" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" aria-labelledby="Advanced Search">Recherche avancé</a>
+                            <a tabindex="-1" type="button" class="btn btn-info btn-sm" href="javascript:void(0);" onclick="startTour();" aria-labelledby="Help">Aide</a>
                         </form>
 
                     </li>
@@ -60,20 +60,20 @@
             <div class="navbar-header col-sm-2 col-md-2">
                 <div class="navbar-brand">
                     <div class="col-sm-9 col-md-9">
-                        <!--<div class="brand"><a href="/">Звуки Му</a> </div>-->
-                        <div class="brand"><a href="/zvukimu">Звуки Му</a> </div>
+                        <!--<div class="brand"><a href="/">Verba Sonandi</a> </div>-->
+                        <div class="brand"><a href="/zvukimu/fr">Verba Sonandi</a> </div>
                     </div>
                     <div class="col-sm-3 col-md-3">
                         <div class="btn-group" role="group" aria-label="...">
-                          <!--<a href="/fr" type="button" class="btn btn-info btn-xs">FR</a>-->
-                            <a href="/zvukimu/fr" type="button" class="btn btn-info btn-xs">FR</a>
+                          <!--<a href="/" type="button" class="btn btn-info btn-xs">RU</a>-->
+                            <a href="/zvukimu" type="button" class="btn btn-info btn-xs">RU</a>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-    </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg">
@@ -110,18 +110,18 @@
 <div class="row"  id="upper_tables">
     <div class="col-md-7">
         <div class="panel panel-default" data-step="5" data-intro="Здесь показаны результаты поиска в виде таблицы. Чтобы посмотреть метафоры определенного глагола, щелкните на строку, в которой он находится.">
-            <div class="panel-heading">Результаты поиска</div>
+            <div class="panel-heading">Résultats</div>
 
             <table id="results" class="table table-striped table-hover">
                 <thead>
                 <tr>
-                    <th>Язык</th>
-                    <th>Животное</th>
-                    <th>Название животного на языке</th>
-                    <th>Глагол</th>
-                    <th>Перевод глагола</th>
-                    <th>Тэги</th>
-                    <th>Пример употребления в прямом значении</th>
+                    <th>Langue</th>
+                    <th>Nom de l’animal</th>
+                    <th>Nom de l’animal dans cette langue</th>
+                    <th>Verbe</th>
+                    <th>Possibilités de traduction</th>
+                    <th>Tag</th>
+                    <th>Exemple d'emploi primaire</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -131,18 +131,18 @@
     </div>
     <div class="col-md-5" id="fixed">
         <div class="panel panel-default" >
-            <div class="panel-heading" data-step="6" data-intro="Здесь появится информация о метафорических значениях выбранного глагола.">Глагол: <span id="title"></span></div>
+            <div class="panel-heading" data-step="6" data-intro="Здесь появится информация о метафорических значениях выбранного глагола.">Verbe: <span id="title"></span></div>
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <h4>Прямое значение</h4>
+                    <h4>Exemple d'emploi primaire</h4>
                     <ul id="crew">
                     </ul>
                 </div>
                 <div class="col-sm-12 col-md-12">
-                    <h4>Перевод метафорического значения</h4> <p id="trans"></p>
+                    <h4>Possibilité de traduction d’emploi métaphorique</h4> <p id="trans"></p>
                 </div>
                 <div class="col-md-12 col-sm-12">
-                    <h4>Примеры метафор</h4>
+                    <h4>Exemple d’emploi métaphorique</h4>
                     <ul id="met">
                     </ul>
                 </div>
@@ -176,7 +176,7 @@
 
         function showInfo(title) {
             // todo change name!
-//            $.get("/zvukimu/details/" + encodeURIComponent(title),
+//            $.get("/zvukimu/fr/details/" + encodeURIComponent(title),
             $.get("/details/" + encodeURIComponent(title),
                     function (data) {
                         if (!data) return;
@@ -201,7 +201,7 @@
             var tag=s.find("input[name=tag]").val();
             draw_graph(query, animal, lang, tag);
             // todo change name!
-//            $.get("/zvukimu/search?q=" + encodeURIComponent(query)+"&a="+ encodeURIComponent(animal)+"&l="+ encodeURIComponent(lang)+"&t="+ encodeURIComponent(tag),
+//            $.get("/zvukimu/fr/search?q=" + encodeURIComponent(query)+"&a="+ encodeURIComponent(animal)+"&l="+ encodeURIComponent(lang)+"&t="+ encodeURIComponent(tag),
             $.get("/search?q=" + encodeURIComponent(query)+"&a="+ encodeURIComponent(animal)+"&l="+ encodeURIComponent(lang)+"&t="+ encodeURIComponent(tag),
                     function (data) {
                         var t = $("table#results tbody").empty();
@@ -221,8 +221,8 @@
 
 
         $('#toggle-two').bootstrapToggle({
-            on: 'Таблицы',
-            off: 'Графы'
+            on: 'Tableaux',
+            off: 'Graphes'
             }).change(function() {
        if ($(this).prop('checked')){$( "#upper_tables" ).hide();} else {$( "#upper_tables" ).show( );}
     });
@@ -251,7 +251,7 @@ function dragstart(d) {
 
 // todo change name!
         d3.json("/graph?q=" + encodeURIComponent(q)+"&a="+ encodeURIComponent(a)+"&l="+ encodeURIComponent(l)+"&t="+ encodeURIComponent(t), function(error, graph) {
-//d3.json("/zvukimu/graph?q=" + encodeURIComponent(q)+"&a="+ encodeURIComponent(a)+"&l="+ encodeURIComponent(l)+"&t="+ encodeURIComponent(t), function(error, graph) {
+//d3.json("/zvukimu/fr/graph?q=" + encodeURIComponent(q)+"&a="+ encodeURIComponent(a)+"&l="+ encodeURIComponent(l)+"&t="+ encodeURIComponent(t), function(error, graph) {
 		if (error) return;
 
         force.nodes(graph.nodes).links(graph.links).start();
