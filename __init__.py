@@ -2,12 +2,37 @@
 __author__ = 'elmira'
 
 from utilities import SQLClient, colors, lang_colors
-from flask import Flask, jsonify, abort, make_response, request, render_template, url_for
+from flask import Flask, jsonify, abort, make_response, request, render_template, url_for, Response
 import json
+from functools import wraps
+
 
 app = Flask(__name__, static_folder='./static/', static_path='/static')
 db_name = 'animals_db.dtb' # todo change name!
 # db_name = '/home/elmira/zvukimu/zvukimu/animals_db.dtb' # todo change name!
+
+
+def check_auth(username, password):
+    """This function is called to check if a username /
+    password combination is valid.
+    """
+    return username == 'admin' and password == 'secret'
+
+def authenticate():
+    """Sends a 401 response that enables basic auth"""
+    return Response(
+    'Could not verify your access level for that URL.\n'
+    'You have to login with proper credentials', 401,
+    {'WWW-Authenticate': 'Basic realm="Login Required"'})
+
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth = request.authorization
+        if not auth or not check_auth(auth.username, auth.password):
+            return authenticate()
+        return f(*args, **kwargs)
+    return decorated
 
 @app.route('/')
 def index():
@@ -168,6 +193,13 @@ WHERE s.id IN (SELECT id FROM Sounds WHERE verb='""" + word+ """') GROUP BY m.ex
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
+
+
+@app.route('/admin', methods=['GET'])
+@requires_auth
+def admin():
+    return render_template("admin.html")
+
 
 
 # @app.route('/new', methods=['GET', 'POST'])

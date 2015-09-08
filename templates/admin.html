@@ -39,10 +39,6 @@
     <a tabindex="-1"  href="/zvukimu/fr" type="button" class="btn btn-info btn-sm">FR</a>
 </div>
 
-
-<div id="graph" data-step="7" data-intro="После нажатия чекбокса вы увидите графы, которые визуализируют полученные данные. </br></br> Узлы графа можно перетаскивать мышкой в удобные области экрана. Узлы прикрепляются к тому месту экрана, куда вы их перетянули. Чтобы освободить узел, дважды кликните на него. </br></br> Красные узлы графа символизируют животных, черные - тэги. Остальные узлы графа - глаголы, они окрашены в разные цвета в зависимости от языка.">
-</div>
-
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -80,37 +76,6 @@
         </div><!--/.container-fluid -->
       </nav>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="subcorpusLabel">1234</h4>
-      </div>
-      <div class="modal-body">
-          <div class="row">
-              <div class="col-sm-3">
-                  <div class="row">
-                      <div class="col-sm-12">
-                          <div class="panel panel-success">
-                            <div class="panel-heading">
-                              13456
-                            </div>
-                            <div class="panel-body">
-                                wqertg
-                          </div>
-                      </div>
-                  </div>
-              </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">ok</button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
 
 <div class="row"  id="upper_tables">
     <div class="col-md-7">
@@ -155,75 +120,11 @@
         </div>
     </div>
 </div>
-<style type="text/css">
-    .node { stroke: #222; stroke-width: 2px; }
-    .node.language { fill: yellow; opacity: 0.8}
-    .node.animal { fill: red; opacity: 0.8}
-    .node.verb { fill: #BBB; opacity: 0.8}
-    .link { stroke: #999; stroke-opacity: .6; stroke-width: 1px; }
-    .node.fixed {  opacity: 1}
-    .toggle-off.btn {padding-left: 14px;}
-    .toggle-on.btn {padding-left: 4px;}
-    #fixed {position: fixed; right:0}
-    .divider-vertical {
-        height: 150px;
-        margin: 0 9px;
-        border-left: 1px solid #BBBBBB;
-        border-right: 1px solid #BAB;
-        }
-</style>
 
 
 <script type="text/javascript">
 
     $(function () {
-
-
-        function showInfo(title) {
-            // todo change name!
-//            $.get("/zvukimu/details/" + encodeURIComponent(title),
-            $.get("/details/" + encodeURIComponent(title),
-                    function (data) {
-                        if (!data) return;
-                        $("#title").text(data.verb);
-                        $("#trans").text(data.trans);
-                        var $list = $("#crew").empty();
-                        data.dir.forEach(function (dir) {
-                            $list.append($("<li>" + dir.ex + " " +dir.trans + "</li>"));
-                        });
-                        var $list2 = $("#met").empty();
-                        data.met.forEach(function (met) {
-                            $list2.append($("<li>" + met.ex + " " +met.trans + " " + met.tag + "</li>"));
-                        });
-                    }, "json");
-            return false;
-        }
-        function search() {
-            var s= $("#search");
-            var query=s.find("input[name=search]").val();
-            var animal=s.find("input[name=animal]").val();
-            var lang=s.find("input[name=language]").val();
-            var tag=s.find("input[name=tag]").val();
-            draw_graph(query, animal, lang, tag);
-            // todo change name!
-//            $.get("/zvukimu/search?q=" + encodeURIComponent(query)+"&a="+ encodeURIComponent(animal)+"&l="+ encodeURIComponent(lang)+"&t="+ encodeURIComponent(tag),
-            $.get("/search?q=" + encodeURIComponent(query)+"&a="+ encodeURIComponent(animal)+"&l="+ encodeURIComponent(lang)+"&t="+ encodeURIComponent(tag),
-                    function (data) {
-                        var t = $("table#results tbody").empty();
-                        if (!data || data.length == 0) return;
-                        data.forEach(function (row) {
-                            var animals = row.data;
-                            $("<tr><td>" + animals.language + "</td><td class='animal'>" + animals.animal + "</td><td>" + animals.animal2 + "</td><td class='verb'>" + animals.verb + "</td><td>" + animals.trans + "</td><td>" + animals.tag + "</td><td class='ex'>" + animals.ex + "</td></tr>").appendTo(t)
-                                    .click(function() { showInfo($(this).find("td.verb").text());})
-                        });
-                        showInfo(data[0].data.verb);
-                    }, "json");
-            return false;
-        }
-
-        $("#search").submit(search);
-        search();
-
 
         $('#toggle-two').bootstrapToggle({
             on: 'Таблицы',
@@ -234,86 +135,6 @@
             })
 </script>
 
-<script type="text/javascript">
-    function dblclick(d) {
-  d3.select(this).classed("fixed", d.fixed = false);
-}
 
-function dragstart(d) {
-  d3.select(this).classed("fixed", d.fixed = true);
-}
-
-    function draw_graph(q, a, l, t){
-        d3.select("#graph").html("");
-    var width = 800, height = 800;
-
-    var force = d3.layout.force()
-            .charge(-200).linkDistance(30).size([width, height]);
-    var drag = force.drag().on("dragstart", dragstart);
-    var svg = d3.select("#graph").append("svg")
-            .attr("width", "100%").attr("height", "100%")
-            .attr("pointer-events", "all");
-
-// todo change name!
-        d3.json("/graph?q=" + encodeURIComponent(q)+"&a="+ encodeURIComponent(a)+"&l="+ encodeURIComponent(l)+"&t="+ encodeURIComponent(t), function(error, graph) {
-//d3.json("/zvukimu/graph?q=" + encodeURIComponent(q)+"&a="+ encodeURIComponent(a)+"&l="+ encodeURIComponent(l)+"&t="+ encodeURIComponent(t), function(error, graph) {
-		if (error) return;
-
-        force.nodes(graph.nodes).links(graph.links).start();
-
-        var link = svg.selectAll(".link")
-                .data(graph.links).enter()
-                .append("line").attr("class", "link");
-        var gnodes = svg.selectAll('g.gnode')
-             .data(graph.nodes)
-             .enter()
-             .append('g')
-             .classed('gnode', true);
-
-        var node = gnodes.append("circle")
-                .attr("class", function (d) { return "node "+d.label })
-//                .attr("data-toggle", "tooltip")
-                .attr("r", function (d) { return 5 +d.radius })
-                //.attr('title', function (d) { return d.name; })
-                .on("dblclick", dblclick)
-                .call(force.drag)
-                .style("fill", function (d) { return d.color });
-
-        // html title attribute
-        node.append("title")
-                .text(function (d) { return d.name; }).attr('title', function (d) { return d.name; });
-        var labels = gnodes.append("text")
-            .text(function(d) {
-            return '';//d.name;
-       })
-            .attr("font-family", "sans-serif")
-           .attr("font-size", "11px")
-           .attr("fill", "black")
-         .attr("text-anchor", "middle");
-
-        // force feed algo ticks
-        force.on("tick", function() {
-            link.attr("x1", function(d) { return d.source.x; })
-                    .attr("y1", function(d) { return d.source.y; })
-                    .attr("x2", function(d) { return d.target.x; })
-                    .attr("y2", function(d) { return d.target.y; });
-
-            gnodes.attr("transform", function(d) {
-        return 'translate(' + [d.x, d.y] + ')';
-    });
-        });
-    $('svg circle').tipsy({
-        gravity: 'w',
-        html: true,
-        title: function() {
-          var d = this.__data__, c = d.name;
-          return c;
-        }
-      });
- });}
-
-
-
-</script>
 </body>
 </html>

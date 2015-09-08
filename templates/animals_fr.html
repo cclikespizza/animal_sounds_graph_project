@@ -1,17 +1,20 @@
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='introjs.css') }}">
     <script src="{{ url_for('static', filename='intro.js') }}"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="http://d3js.org/d3.v3.min.js" type="text/javascript"></script>
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap2-toggle.min.css" rel="stylesheet">
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap2-toggle.min.js"></script>
-    <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='jquery-1.11.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='d3.v3.min.js') }}" type="text/javascript"></script>
+    <link href="{{ url_for('static', filename='bootstrap2-toggle.min.css') }}" rel="stylesheet">
+     <link href="{{ url_for('static', filename='bootstrap2-toggle.min.css') }}" rel="stylesheet">
+<script src="{{ url_for('static', filename='bootstrap2-toggle.min.js') }}"></script>
 <script src="{{ url_for('static', filename='jquery.tipsy.js') }}"></script>
       <link href="{{ url_for('static', filename='tipsy.css') }}" rel="stylesheet" type="text/css" />
-    <script src="http://bootstrap-ru.com/204/assets/js/bootstrap-modal.js"></script>
+    <script src="{{ url_for('static', filename='bootstrap-modal.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='page.js') }}"></script>
 <script>
 		function startTour() {
 			var tour = introJs();
@@ -22,17 +25,37 @@
 
 	</script>
     <title>Глаголы звуков животных</title>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
-<div id="graph" data-step="7" data-intro="FR После нажатия чекбокса вы увидите графы, которые визуализируют полученные данные. </br></br> Узлы графа можно перетаскивать мышкой в удобные области экрана. Узлы прикрепляются к тому месту экрана, куда вы их перетянули. Чтобы освободить узел, дважды кликните на него. </br></br> Красные узлы графа символизируют животных, черные - тэги. Остальные узлы графа - глаголы, они окрашены в разные цвета в зависимости от языка.">
+<div class="a2a_kit a2a_kit_size_32 a2a_floating_style a2a_vertical_style" style="bottom:0px; right:0px;">
+        <a tabindex="-1" type="button" class="btn btn-info btn-sm" href="/admin"> &#128295;</a>
+    <a tabindex="-1"  href="/zvukimu" type="button" class="btn btn-info btn-sm">RU</a>
 </div>
-<div role="navigation" class="navbar navbar-default navbar-static-top">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-10 col-md-10">
-                <ul class="nav navbar-nav">
+
+<div id="graph" data-step="7" data-intro="После нажатия чекбокса вы увидите графы, которые визуализируют полученные данные. </br></br> Узлы графа можно перетаскивать мышкой в удобные области экрана. Узлы прикрепляются к тому месту экрана, куда вы их перетянули. Чтобы освободить узел, дважды кликните на него. </br></br> Красные узлы графа символизируют животных, черные - тэги. Остальные узлы графа - глаголы, они окрашены в разные цвета в зависимости от языка.">
+</div>
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
                     <li>
+                        <a class="navbar-brand navbar-header" href="/">Verba Sonandi</a>
                         <form role="search" class="navbar-form form-inline" id="search">
 
                             <div class="form-group" data-step="1" data-intro="Для поиска животных введите их названия через запятую в этом поле. Например: волк, медведь."><input type="text" value="кошка, собака" placeholder="Nom de l’animal" class="form-control" name="animal" id="animal_search">
@@ -43,37 +66,18 @@
                             </div>
                             <div class="form-group">
                                  <button class="btn btn-default" type="submit" data-step="4" data-intro="Чтобы начать поиск, нажмите эту кнопку. Также поиск начнется по нажатию Enter в любом поле поиска.">Recherche</button>
-                            </div>
-                            <span class="divider-vertical"></span>
                             <div class="form-group" data-step="5" data-intro="Чтобы увидеть графы, щелкните этот чекбокс. Чтобы увидеть таблицы, щелкните чекбокс повторно.">
                                  <input type="checkbox" id="toggle-two" data-height="30" data-width="100">
                             </div>
-                            <span class="divider-vertical"></span>
-                            <!--<a href="/advanced" class="btn btn-info btn-sm" role="button">Advanced Search</a> -->
+                                </div>
                             <a href="#myModal" tabindex="-1" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" aria-labelledby="Advanced Search">Recherche avancé</a>
                             <a tabindex="-1" type="button" class="btn btn-info btn-sm" href="javascript:void(0);" onclick="startTour();" aria-labelledby="Help">Aide</a>
                         </form>
-
                     </li>
                 </ul>
-            </div>
-            <div class="navbar-header col-sm-2 col-md-2">
-                <div class="navbar-brand">
-                    <div class="col-sm-9 col-md-9">
-                        <!--<div class="brand"><a href="/">Verba Sonandi</a> </div>-->
-                        <div class="brand"><a href="/zvukimu/fr">Verba Sonandi</a> </div>
-                    </div>
-                    <div class="col-sm-3 col-md-3">
-                        <div class="btn-group" role="group" aria-label="...">
-                          <!--<a href="/" type="button" class="btn btn-info btn-xs">RU</a>-->
-                            <a href="/zvukimu" type="button" class="btn btn-info btn-xs">RU</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg">
