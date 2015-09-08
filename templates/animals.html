@@ -35,7 +35,7 @@
 
 <body>
 <div class="a2a_kit a2a_kit_size_32 a2a_floating_style a2a_vertical_style" style="bottom:0px; right:0px;">
-        <a tabindex="-1" type="button" class="btn btn-info btn-sm" href="/admin"> &#128295;</a>
+        <a tabindex="-1" type="button" class="btn btn-info btn-sm" href="/zvukimu/admin"> &#128295;</a>
     <a tabindex="-1"  href="/zvukimu/fr" type="button" class="btn btn-info btn-sm">FR</a>
 </div>
 
@@ -181,8 +181,8 @@
 
         function showInfo(title) {
             // todo change name!
-//            $.get("/zvukimu/details/" + encodeURIComponent(title),
-            $.get("/details/" + encodeURIComponent(title),
+            $.get("/zvukimu/details/" + encodeURIComponent(title),
+{#            $.get("/details/" + encodeURIComponent(title),#}
                     function (data) {
                         if (!data) return;
                         $("#title").text(data.verb);
@@ -206,8 +206,8 @@
             var tag=s.find("input[name=tag]").val();
             draw_graph(query, animal, lang, tag);
             // todo change name!
-//            $.get("/zvukimu/search?q=" + encodeURIComponent(query)+"&a="+ encodeURIComponent(animal)+"&l="+ encodeURIComponent(lang)+"&t="+ encodeURIComponent(tag),
-            $.get("/search?q=" + encodeURIComponent(query)+"&a="+ encodeURIComponent(animal)+"&l="+ encodeURIComponent(lang)+"&t="+ encodeURIComponent(tag),
+            $.get("/zvukimu/search?q=" + encodeURIComponent(query)+"&a="+ encodeURIComponent(animal)+"&l="+ encodeURIComponent(lang)+"&t="+ encodeURIComponent(tag),
+{#            $.get("/search?q=" + encodeURIComponent(query)+"&a="+ encodeURIComponent(animal)+"&l="+ encodeURIComponent(lang)+"&t="+ encodeURIComponent(tag),#}
                     function (data) {
                         var t = $("table#results tbody").empty();
                         if (!data || data.length == 0) return;
@@ -255,8 +255,8 @@ function dragstart(d) {
             .attr("pointer-events", "all");
 
 // todo change name!
-        d3.json("/graph?q=" + encodeURIComponent(q)+"&a="+ encodeURIComponent(a)+"&l="+ encodeURIComponent(l)+"&t="+ encodeURIComponent(t), function(error, graph) {
-//d3.json("/zvukimu/graph?q=" + encodeURIComponent(q)+"&a="+ encodeURIComponent(a)+"&l="+ encodeURIComponent(l)+"&t="+ encodeURIComponent(t), function(error, graph) {
+{#        d3.json("/graph?q=" + encodeURIComponent(q)+"&a="+ encodeURIComponent(a)+"&l="+ encodeURIComponent(l)+"&t="+ encodeURIComponent(t), function(error, graph) {#}
+d3.json("/zvukimu/graph?q=" + encodeURIComponent(q)+"&a="+ encodeURIComponent(a)+"&l="+ encodeURIComponent(l)+"&t="+ encodeURIComponent(t), function(error, graph) {
 		if (error) return;
 
         force.nodes(graph.nodes).links(graph.links).start();

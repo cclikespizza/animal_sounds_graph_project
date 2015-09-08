@@ -8,8 +8,8 @@ from functools import wraps
 
 
 app = Flask(__name__, static_folder='./static/', static_path='/static')
-db_name = 'animals_db.dtb' # todo change name!
-# db_name = '/home/elmira/zvukimu/zvukimu/animals_db.dtb' # todo change name!
+# db_name = 'animals_db.dtb' # todo change name!
+db_name = '/home/elmira/zvukimu/zvukimu/animals_db.dtb' # todo change name!
 
 
 def check_auth(username, password):
@@ -34,13 +34,14 @@ def requires_auth(f):
         return f(*args, **kwargs)
     return decorated
 
+@app.route('/fr')
 @app.route('/')
 def index():
-    return render_template('animals.html')
+    rule = request.url_rule.rule
+    if '/fr' not in rule: templ = 'animals.html'
+    else: templ = 'animals_fr.html'
+    return render_template(templ)
 
-@app.route('/fr')
-def index2():
-    return render_template('animals_fr.html')
 
 @app.route('/fr/advanced')
 @app.route('/advanced')
@@ -194,12 +195,33 @@ WHERE s.id IN (SELECT id FROM Sounds WHERE verb='""" + word+ """') GROUP BY m.ex
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
-
-@app.route('/admin', methods=['GET'])
+@app.route('/fr/admin', methods=['GET', 'POST'])
+@app.route('/admin', methods=['GET', 'POST'])
 @requires_auth
 def admin():
-    return render_template("admin.html")
+    rule = request.url_rule.rule
+    templ = 'admin.html' if '/fr/' not in rule else 'admin_fr.html'
+    return render_template(templ, loaded_file=False, smth_failed=False)
 
+
+@app.route('/fr/upload_file', methods=['GET', 'POST'])
+@app.route('/upload_file', methods=['GET', 'POST'])
+def upload_file_ru():
+    rule = request.url_rule.rule
+    templ = 'admin.html' if '/fr/' not in rule else 'admin_fr.html'
+    # print request.method
+    # print request.form  # ImmutableMultiDict([('headers', u'on')])
+    # print request.files  # ImmutableMultiDict([('datafile', <FileStorage: u'word.macros.txt' ('text/plain')>)])
+    if request.method == 'POST':
+        try:
+            r = request.form['headers']
+            f = request.files['datafile']
+            # print f.readlines()[0]
+            return render_template(templ, loaded_file=True, smth_failed=False)
+        except:
+            return render_template(templ, loaded_file=False, smth_failed=True)
+    return render_template(templ, loaded_file=False, smth_failed=False)
+    # return json.dumps({"result": ''})
 
 
 # @app.route('/new', methods=['GET', 'POST'])
